@@ -1,24 +1,24 @@
 <?php
 
-use app\models\Mahasiswa;
+use app\models\Jurusan;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\models\MahasiswaSearch $searchModel */
+/** @var app\models\JurusanSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Data Mahasiswa';
+$this->title = 'Data Jurusan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mahasiswa-index">
+<div class="jurusan-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Tambah Data Mahasiswa', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Tambah Data Jurusan', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); 
@@ -26,19 +26,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            // 'id_mahasiswa',
-            'nim',
-            'nama',
-            'jk.jenisKelamin',
-            'jurusan.jurusan',
-            'angkatan.angkatan',
+            //'id_jurusan',
+            'jurusan',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Mahasiswa $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id_mahasiswa' => $model->id_mahasiswa]);
+                'urlCreator' => function ($action, Jurusan $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id_jurusan' => $model->id_jurusan]);
                 }
             ],
         ],

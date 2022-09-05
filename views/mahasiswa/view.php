@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /** @var yii\web\View $this */
 /** @var app\models\Mahasiswa $model */
 
-$this->title = $model->id_mahasiswa;
-$this->params['breadcrumbs'][] = ['label' => 'Mahasiswas', 'url' => ['index']];
+$this->title = $model->nama;
+$this->params['breadcrumbs'][] = ['label' => 'Data Mahasiswa', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -15,8 +15,23 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            // 'id_mahasiswa',
+            'nim',
+            'nama',
+            'jk.jenisKelamin',
+            'jurusan.jurusan',
+            'angkatan.angkatan',
+        ],
+    ]) ?>
+
     <p>
-        <?= Html::a('Update', ['update', 'id_mahasiswa' => $model->id_mahasiswa], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Kembali', ['index'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update', ['update', 'id_mahasiswa' => $model->id_mahasiswa], ['class' => 'btn btn-warning']) ?>
         <?= Html::a('Delete', ['delete', 'id_mahasiswa' => $model->id_mahasiswa], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -25,17 +40,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id_mahasiswa',
-            'nim',
-            'nama',
-            'jk',
-            'jurusan',
-            'angkatan',
-        ],
-    ]) ?>
 
 </div>

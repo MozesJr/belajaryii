@@ -2,17 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\Mahasiswa;
-use app\models\MahasiswaSearch;
+use app\models\Jurusan;
+use app\models\JurusanSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-
 /**
- * MahasiswaController implements the CRUD actions for Mahasiswa model.
+ * JurusanController implements the CRUD actions for Jurusan model.
  */
-class MahasiswaController extends Controller
+class JurusanController extends Controller
 {
     /**
      * @inheritDoc
@@ -33,13 +32,13 @@ class MahasiswaController extends Controller
     }
 
     /**
-     * Lists all Mahasiswa models.
+     * Lists all Jurusan models.
      *
      * @return string
      */
     public function actionIndex()
     {
-        $searchModel = new MahasiswaSearch();
+        $searchModel = new JurusanSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
@@ -49,30 +48,30 @@ class MahasiswaController extends Controller
     }
 
     /**
-     * Displays a single Mahasiswa model.
-     * @param int $id_mahasiswa Id Mahasiswa
+     * Displays a single Jurusan model.
+     * @param int $id_jurusan Id Jurusan
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id_mahasiswa)
+    public function actionView($id_jurusan)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id_mahasiswa),
+            'model' => $this->findModel($id_jurusan),
         ]);
     }
 
     /**
-     * Creates a new Mahasiswa model.
+     * Creates a new Jurusan model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Mahasiswa();
+        $model = new Jurusan();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                // return $this->redirect(['view', 'id_mahasiswa' => $model->id_mahasiswa]);
+                // return $this->redirect(['view', 'id_jurusan' => $model->id_jurusan]);
                 return $this->redirect(['index']);
             }
         } else {
@@ -85,18 +84,18 @@ class MahasiswaController extends Controller
     }
 
     /**
-     * Updates an existing Mahasiswa model.
+     * Updates an existing Jurusan model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $id_mahasiswa Id Mahasiswa
+     * @param int $id_jurusan Id Jurusan
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id_mahasiswa)
+    public function actionUpdate($id_jurusan)
     {
-        $model = $this->findModel($id_mahasiswa);
+        $model = $this->findModel($id_jurusan);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id_mahasiswa' => $model->id_mahasiswa]);
+            return $this->redirect(['view', 'id_jurusan' => $model->id_jurusan]);
         }
 
         return $this->render('update', [
@@ -105,29 +104,29 @@ class MahasiswaController extends Controller
     }
 
     /**
-     * Deletes an existing Mahasiswa model.
+     * Deletes an existing Jurusan model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $id_mahasiswa Id Mahasiswa
+     * @param int $id_jurusan Id Jurusan
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id_mahasiswa)
+    public function actionDelete($id_jurusan)
     {
-        $this->findModel($id_mahasiswa)->delete();
+        $this->findModel($id_jurusan)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Mahasiswa model based on its primary key value.
+     * Finds the Jurusan model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $id_mahasiswa Id Mahasiswa
-     * @return Mahasiswa the loaded model
+     * @param int $id_jurusan Id Jurusan
+     * @return Jurusan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id_mahasiswa)
+    protected function findModel($id_jurusan)
     {
-        if (($model = Mahasiswa::findOne(['id_mahasiswa' => $id_mahasiswa])) !== null) {
+        if (($model = Jurusan::findOne(['id_jurusan' => $id_jurusan])) !== null) {
             return $model;
         }
 

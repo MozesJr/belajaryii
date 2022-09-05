@@ -10,9 +10,9 @@ use Yii;
  * @property int $id_mahasiswa
  * @property string $nim
  * @property string $nama
- * @property int $jk
- * @property string $jurusan
- * @property int $angkatan
+ * @property int $id_jk
+ * @property int $id_jurusan
+ * @property int $id_angkatan
  */
 class Mahasiswa extends \yii\db\ActiveRecord
 {
@@ -30,10 +30,10 @@ class Mahasiswa extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nim', 'nama', 'jk', 'jurusan', 'angkatan'], 'required'],
-            [['jk', 'angkatan'], 'integer'],
+            [['nim', 'nama', 'id_jk', 'id_jurusan', 'id_angkatan'], 'required'],
+            [['id_jk', 'id_jurusan', 'id_angkatan'], 'integer'],
             [['nim'], 'string', 'max' => 10],
-            [['nama', 'jurusan'], 'string', 'max' => 255],
+            [['nama'], 'string', 'max' => 255],
         ];
     }
 
@@ -45,10 +45,25 @@ class Mahasiswa extends \yii\db\ActiveRecord
         return [
             'id_mahasiswa' => 'Id Mahasiswa',
             'nim' => 'Nim',
-            'nama' => 'Nama',
-            'jk' => 'Jk',
-            'jurusan' => 'Jurusan',
-            'angkatan' => 'Angkatan',
+            'nama' => 'Nama Lengkap',
+            'id_jk' => 'Jenis Kelamin',
+            'id_jurusan' => 'Jurusan',
+            'id_angkatan' => 'Angkatan',
         ];
+    }
+
+    public function getJk()
+    {
+        return $this->hasOne(Jk::className(), ['id_jk' => 'id_jk']);
+    }
+
+    public function getAngkatan()
+    {
+        return $this->hasOne(Angkatan::className(), ['id_angkatan' => 'id_angkatan']);
+    }
+
+    public function getJurusan()
+    {
+        return $this->hasOne(Jurusan::className(), ['id_jurusan' => 'id_jurusan']);
     }
 }

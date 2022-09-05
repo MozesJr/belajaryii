@@ -8,7 +8,6 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
-
 /**
  * MahasiswaController implements the CRUD actions for Mahasiswa model.
  */

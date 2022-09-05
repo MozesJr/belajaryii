@@ -4,12 +4,12 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Mahasiswa;
+use app\models\Angkatan;
 
 /**
- * MahasiswaSearch represents the model behind the search form of `app\models\Mahasiswa`.
+ * AngkatanSearch represents the model behind the search form of `app\models\Angkatan`.
  */
-class MahasiswaSearch extends Mahasiswa
+class AngkatanSearch extends Angkatan
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class MahasiswaSearch extends Mahasiswa
     public function rules()
     {
         return [
-            [['id_mahasiswa', 'id_jk', 'id_jurusan', 'id_angkatan'], 'integer'],
-            [['nim', 'nama'], 'safe'],
+            [['id_angkatan'], 'integer'],
+            [['angkatan'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class MahasiswaSearch extends Mahasiswa
      */
     public function search($params)
     {
-        $query = Mahasiswa::find();
+        $query = Angkatan::find();
 
         // add conditions that should always apply here
 
@@ -58,14 +58,10 @@ class MahasiswaSearch extends Mahasiswa
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id_mahasiswa' => $this->id_mahasiswa,
-            'id_jk' => $this->id_jk,
-            'id_jurusan' => $this->id_jurusan,
             'id_angkatan' => $this->id_angkatan,
         ]);
 
-        $query->andFilterWhere(['like', 'nim', $this->nim])
-            ->andFilterWhere(['like', 'nama', $this->nama]);
+        $query->andFilterWhere(['like', 'angkatan', $this->angkatan]);
 
         return $dataProvider;
     }
